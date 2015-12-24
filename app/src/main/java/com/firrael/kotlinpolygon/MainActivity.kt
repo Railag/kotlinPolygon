@@ -1,9 +1,8 @@
 package com.firrael.kotlinpolygon
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.MarginLayoutParamsCompat
-import org.jetbrains.anko.*;
+import android.support.v7.app.AppCompatActivity
+import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +32,33 @@ class MainActivity : AppCompatActivity() {
             button("Test") {
                 onClick { ctx.toast("Hello, ${name}!") }
             }.lparams(width = wrapContent)
+
+            textView() {
+                textResource = R.string.abc_search_hint
+            }
+
+            relativeLayout() {
+
+                textView("Test123") {
+                    id = 155
+                    textSize = 70f
+                }.lparams {
+                    width = matchParent; topMargin = dip(8)
+                }
+
+                textView ("Test321") {
+
+                }.lparams {
+                    below(155); sameLeft(155);
+                }
+
+                button("Test222") {
+
+                }.lparams {
+                    centerInParent()
+
+                }
+            }
         }
     }
 }
