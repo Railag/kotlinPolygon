@@ -1,6 +1,7 @@
 package com.firrael.kotlinpolygon
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.*
 
@@ -12,6 +13,14 @@ class MainActivity : AppCompatActivity() {
         val name = "test1";
 
         val mediumStyle = R.style.Base_TextAppearance_AppCompat_Medium_Inverse
+
+
+        val dialog = AlertDialog.Builder(this)
+                .setTitle("Exit")
+                .setMessage("Do you really want exit?")
+                .setPositiveButton("Yes", { dialog, which ->  finish() })
+                .setNegativeButton("No", { dialog, which -> dialog.dismiss() })
+                .create();
 
         verticalLayout {
             padding = dip(20)
@@ -30,7 +39,8 @@ class MainActivity : AppCompatActivity() {
             }.setTextAppearance(ctx, mediumStyle)
 
             button("Test") {
-                onClick { ctx.toast("Hello, ${name}!") }
+                onClick { ctx.toast("Hello, ${name}!")
+                dialog.show() }
             }.lparams(width = wrapContent)
 
             textView() {
@@ -53,12 +63,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 button("Test222") {
-
+                    onClick {       alert("Exit", "Do you really want exit?") {
+                        positiveButton("Yes") { finish() }
+                        negativeButton("No") { dismiss() }
+                    }.show() }
                 }.lparams {
                     centerInParent()
 
                 }
             }
         }
+
+
     }
 }
