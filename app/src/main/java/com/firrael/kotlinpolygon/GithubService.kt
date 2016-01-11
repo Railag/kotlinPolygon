@@ -9,6 +9,6 @@ import retrofit.Call
  */
 
 interface GitHubService {
-    @GET("users/{user}/repos")
-    fun listRepos(@Path("user") user:String): Call<List<Repo>>
+    @GET("users/{user}")
+    fun listRepos(@Path("user") user:String): Call<Owner>
 }

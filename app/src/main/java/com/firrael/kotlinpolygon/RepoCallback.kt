@@ -9,9 +9,9 @@ import retrofit.Retrofit
  * Created by Railag on 11.01.2016.
  */
 
-class RepoCallback : Callback<List<Repo>> {
+class RepoCallback : Callback<Owner> {
 
-    override fun onResponse(response: Response<List<Repo>>, retrofit: Retrofit) {
+    override fun onResponse(response: Response<Owner>, retrofit: Retrofit) {
         Log.e("TEST", response.toString())
     }
 

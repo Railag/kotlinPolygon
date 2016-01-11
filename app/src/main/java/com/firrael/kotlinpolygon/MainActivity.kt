@@ -23,9 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         val service = retrofit.create(GitHubService::class.java)
 
-        val repos = service.listRepos("octocat")
+        val owner = service.listRepos("octocat")
 
         val callback = RepoCallback();
+
+        owner.enqueue(callback)
 
         val mediumStyle = R.style.Base_TextAppearance_AppCompat_Medium_Inverse
 
