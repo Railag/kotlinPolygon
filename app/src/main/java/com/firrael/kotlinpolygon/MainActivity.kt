@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.*
+import retrofit.Callback
+import retrofit.GsonConverterFactory
+import retrofit.Response
+import retrofit.Retrofit
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +15,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val name = "test1";
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.github.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        val service = retrofit.create(GitHubService::class.java)
+
+        val repos = service.listRepos("octocat")
+
+        val callback = RepoCallback();
 
         val mediumStyle = R.style.Base_TextAppearance_AppCompat_Medium_Inverse
 
